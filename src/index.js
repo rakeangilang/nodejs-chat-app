@@ -10,7 +10,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-port = 5000 || process.env.PORT;
+port = process.env.PORT || 5000;
 
 const publicDirPath = path.join(__dirname, '../public');
 
