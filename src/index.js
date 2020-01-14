@@ -16,7 +16,6 @@ const publicDirPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicDirPath));
 
-const welcomeMessage = 'Welcome, new user!';
 io.on('connection', (socket) => {
     console.log('New Websocket Connection');
 
@@ -27,7 +26,7 @@ io.on('connection', (socket) => {
 
         socket.join(user.room);
 
-        socket.emit('message', generateMessage('System', welcomeMessage));
+        socket.emit('message', generateMessage('System', `Welcome, ${user.username}!`));
         socket.broadcast.to(user.room).emit('message', generateMessage('System', `${user.username} has joined!`));
         io.to(user.room).emit('updateRoom', {
             room: user.room,
